@@ -43,4 +43,9 @@ class BaysianFilter:
             self.inc_word(word, category)
         self.inc_category(caategory)
 
-        
+    # カテゴリにおける単語リストのスコアを計算する
+    def score(self, words, category):
+        score = math.log(self.category_prob(category))
+        for word in words:
+            score += math.log(self.word_prob(word, category))
+        return score

@@ -78,6 +78,9 @@ else:
 
 # ファイルごとの単語出現頻度のベクトルを作る
 # テスト用に小規模のデータを用意
+X, Y = count_freq(20)
+json.dump({"X": X, "Y": Y}, open(data_file_min, "w"))
+# 全ファイルを対象にデータを用意
 X, Y = count_freq()
 json.dump({"X": X, "Y": Y}, open(data_file, "w"))
 print("ok")

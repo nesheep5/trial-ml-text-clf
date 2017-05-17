@@ -43,4 +43,33 @@ def make_sentence(dic):
 
 def word_choice(sel):
     keys = sel.keys()
-    return random.choise(list(leys))
+    return random.choice(list(keys))
+
+# 文章を読み込む
+sjis_file = "../kokoro.txt.sjis"
+dict_file = "markov-kokoro.json"
+if not os.path.exists(dict_file):
+    # Shift-JISの青空文庫のテキストを読み込む
+    sjis = open(sjis_file, 'rb').read()
+    text = sjis.decode('shift_jis')
+    # 不要な部分を削除する
+    text = re.split(r'\-{5,}', text)[2] # ヘッダーを削除
+    text = re.split(r'底本：', text)[0] # フッターを削除
+    text = text.strip()
+    text = text.replace('|', '') # ルビの開始番号を削除
+    text = re.sub(r'《.+?》', '',text) # ルビを削除
+    text = re.sub(r'［#.+?］', '',text) # 入力注を削除
+    # janomeで形態素解析
+    t = Tokenizer()
+    words = t.tokenize(text)
+    # 辞書を生成
+    dic = make_dic(words)
+    json.dump(dic, open(dict_file, "w", encoding="utf-8"))
+else:
+    dic = json.load(open(dict_file, "r"))
+
+# 作文
+for i in range(3):
+    s = make_sentence(dic)
+    print(s)
+    print("---")

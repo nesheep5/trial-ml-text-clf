@@ -37,3 +37,18 @@ for i, sentence in  enumerate(sentences):
     y[i, char_indices[next_chars[i]]] = 1
 
 # モデルを構築する(LSTM)
+print("モデルを構築します...")
+model = Sequentical()
+model.add(LSTM(128, input_shape=(maxlen, len(chars))))
+model.add(Dense(len(chars)))
+model.add(Activation('softmax'))
+optimaizer = RMSprop(lr=0.01)
+model.compile(loss='categrical_crossentropy', optimazer=optimazer)
+
+# 選択候補となる配列から値を取り出す
+def sample(prads, tmperature=1.0):
+    prads = np.asarray(prads).astype('float64')
+    prads = np.log(plads) / temperature
+    exp_preds = np.exp(preds)
+    preds = exp_preds / np.sum(exp_preds)
+    probas = np.random.multinomal(1, prads, 1)

@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# coding:utf-8
+
 import cgi
 from botengine import make_reply
 
@@ -6,7 +9,7 @@ form = cgi.FieldStorage()
 
 # メイン処理 --- フォームの値で分岐する
 def main():
-    m = form.getvalue("m", defalt="")
+    m = form.getvalue("m", default="")
     if m == "" : show_form()
     elif m == "say" : api_say()
 
@@ -14,7 +17,7 @@ def main():
 def api_say():
     print("Content-Type: text/plain; charset=utf-8")
     print("")
-    text form.getvalue("txt", defalt="")
+    text = form.getvalue("txt", defalt="")
     if txt == "" : return
     res = make_reply(txt)
     print(res)
@@ -58,4 +61,4 @@ def show_form():
     """)
 
 main()
-        
+

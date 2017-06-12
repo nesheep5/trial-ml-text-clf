@@ -27,7 +27,7 @@ def register_dic(words):
     json.dump(dic, open(dict_file, "w", encoding="utf-8"))
 
 # 三要素のリストを辞書として登録
-def setword3(dic, s3):
+def set_word3(dic, s3):
     w1, w2, w3 = s3
     if not w1 in dic: dic[w1] = {}
     if not w2 in dic[w1]: dic[w1][w2] = {}
@@ -43,7 +43,7 @@ def make_sentence(head):
     w1 = word_choice(top)
     w2 = word_choice(top[w1])
     ret.append(w1)
-    ret.append(d2)
+    ret.append(w2)
     while True:
         if w1 in dic and w2 in dic[w1]:
             w3 = word_choice(dic[w1][w2])
@@ -56,7 +56,7 @@ def make_sentence(head):
 
 def word_choice(sel):
     keys = sel.keys()
-    return random.choice(list(kes))
+    return random.choice(list(keys))
 
 # チャットボットに返答させる
 def make_reply(text):

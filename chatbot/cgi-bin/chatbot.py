@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # coding:utf-8
 
 import cgi
@@ -17,14 +17,14 @@ def main():
 def api_say():
     print("Content-Type: text/plain; charset=utf-8")
     print("")
-    text = form.getvalue("txt", defalt="")
+    txt = form.getvalue("txt", default="")
     if txt == "" : return
     res = make_reply(txt)
     print(res)
 
 # フォームを画面に出力
 def show_form():
-    print("Content-Type: text/plain; charset=utf-8")
+    print("Content-Type: text/html; charset=utf-8")
     print("")
     print("""
     <html><meta charset="utf-8"><body>

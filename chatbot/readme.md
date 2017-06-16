@@ -19,3 +19,6 @@ http://localhost:8080/cgi-bin/chatbot.py
 
 ## 参考書籍
 - http://amzn.to/2sncF6P
+
+## マルコフ連鎖について
+- http://crowd-logic.com/blog/archives/33935

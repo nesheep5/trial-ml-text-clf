@@ -1,4 +1,4 @@
 # MeCabの勉強
 
 ## 資料
-- [公式ベージ](http://taku910.github.io/mecab/)
+- [MeCab公式ページ](http://taku910.github.io/mecab/)
